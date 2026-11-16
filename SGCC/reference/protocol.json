@@ -1,0 +1,72 @@
+{
+  "dataset": "SGCC Electricity Theft Detection",
+  "version": "raw_daily_1034_seed42_context2048",
+  "source": "https://github.com/henryRDlab/ElectricityTheftDetection",
+  "source_csv_sha256": "99f8fd315626b1f729a9a03a97cb52ed097ab4d43e5771e21554c9e0c369b9b7",
+  "seed": 42,
+  "holdout_split_seed": 43,
+  "label_mapping": {
+    "normal": 0,
+    "theft": 1
+  },
+  "rows": 42372,
+  "feature_count": 1034,
+  "date_min": "2014-01-01",
+  "date_max": "2016-10-31",
+  "missing_calendar_dates": [
+    "2016-09-18"
+  ],
+  "missing_fraction": 0.25639920234905683,
+  "all_missing_users": 5,
+  "duplicate_feature_rows": 878,
+  "splits": {
+    "train": {
+      "rows": 29659,
+      "positive": 2530,
+      "expected_parquet_sha256": "d7cc2055ffb93e51df64a10adaeb3b6f93f6a38b1afd8e058cc87a88a9357fb3"
+    },
+    "val": {
+      "rows": 6356,
+      "positive": 542,
+      "expected_parquet_sha256": "f0a7c70d66fc3e5c4a19605cc8eb06b98ae1f7ff7739527aaf1493898ce04476"
+    },
+    "test": {
+      "rows": 6357,
+      "positive": 543,
+      "expected_parquet_sha256": "c165fd9bd531856253ad2e0d3d48e728930ffe94393519ac7092eecd4d8f28bf"
+    }
+  },
+  "context": {
+    "rows": 2048,
+    "positive": 175,
+    "normal": 1873,
+    "selection": "train_test_split(train_row_ids, train_size=2048, random_state=42, stratify=y[train_row_ids]); preserve returned order",
+    "reference_sha256": "798ad3d60f1d4b9764028a0b6255dddd42b731fd3cbc0d72c63b5db8d464d279"
+  },
+  "reconstruction_environment": {
+    "python": "3.12.16",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "pyarrow": "26.0.0",
+    "sqlite": "3.53.1"
+  },
+  "reference_files_sha256": {
+    "split_indices.json": "c2a9e14b91fc021d3f2d46acc600e31b859c8679f4622221bf4fe287a60dab2f",
+    "context_indices.json": "798ad3d60f1d4b9764028a0b6255dddd42b731fd3cbc0d72c63b5db8d464d279",
+    "feature_columns.json": "e6797f4ef0163d43b72c97514ec0e06a29823e10a36ebd1c2090bf7ff67e44ef"
+  },
+  "validation_protocol": {
+    "primary_metric": "ROC_AUC",
+    "direction": "maximize",
+    "selection_unit": "configuration_or_checkpoint",
+    "split_selection": "fixed seed and stratified groups; never selected by metric",
+    "threshold_selection": "maximize validation F1 independently of configuration selection",
+    "test_metrics": [
+      "ROC_AUC",
+      "PR_AUC_AP",
+      "F1",
+      "recall_theft"
+    ]
+  }
+}

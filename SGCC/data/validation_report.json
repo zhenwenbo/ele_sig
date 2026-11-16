@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    "train: complete rows, labels, order, missingness and 1034 raw values match source",
+    "val: complete rows, labels, order, missingness and 1034 raw values match source",
+    "test: complete rows, labels, order, missingness and 1034 raw values match source",
+    "context: exactly 2048 train-only rows in frozen order; 175 positive and 1873 normal",
+    "SQLite integrity, schema, all 42372 source rows and every raw feature checked",
+    "no customer overlap or exact consumption-pattern overlap across splits",
+    "SQLite views preserve frozen split and context order"
+  ],
+  "original_parquet_byte_match": {
+    "train": true,
+    "val": true,
+    "test": true
+  }
+}

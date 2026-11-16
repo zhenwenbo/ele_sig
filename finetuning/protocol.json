@@ -1,0 +1,58 @@
+{
+  "method": "model-independent full-parameter one-epoch fine-tuning",
+  "learning_rate": 1e-06,
+  "optimizer": "AdamW",
+  "weight_decay": 0.01,
+  "gradient_clip_norm": 1.0,
+  "episode_context": 1024,
+  "episode_query": 128,
+  "seed": 42,
+  "train_loss": "binary cross-entropy on actual query labels, using the model output API correctly",
+  "tasks": {
+    "sgcc": {
+      "data": "SGCC/data",
+      "input_features": 1034,
+      "training_pool_rows": 29659,
+      "fixed_eval_context_rows": 2048,
+      "primary_validation_metric": "ROC_AUC",
+      "threshold_selection": "validation F1 for secondary F1/recall only",
+      "optimizer_steps": 232,
+      "final_query_batch_rows": 91
+    },
+    "vsb": {
+      "data": "vsb/data",
+      "input_features": 9,
+      "training_pool_rows": 2032,
+      "fixed_eval_context_rows": 2032,
+      "primary_validation_metric": "MCC",
+      "threshold_selection": "maximize validation MCC",
+      "optimizer_steps": 16,
+      "final_query_batch_rows": 112
+    }
+  },
+  "test_access": "only after final checkpoint selection; no tuning on test outcomes",
+  "early_stopping": false,
+  "selection_includes_step_zero": true,
+  "query_order_seed": 42,
+  "context_sampling_seed": 43,
+  "data_order": "one shuffled pass through all training rows; every row is a query exactly once; keep final partial batch",
+  "checkpoint_selection": "maximize fixed validation primary metric between initial and one-epoch checkpoint; ties retain initial weights; no hyperparameter search",
+  "test_metrics": {
+    "sgcc": [
+      "ROC_AUC",
+      "PR_AUC_AP",
+      "F1",
+      "recall_theft"
+    ],
+    "vsb": [
+      "MCC",
+      "ROC_AUC",
+      "PR_AUC_AP",
+      "F1",
+      "recall_PD"
+    ]
+  },
+  "epochs": 1,
+  "validation_schedule": "before training and after the complete single epoch",
+  "context_scope": "1024 applies to training episodes; fixed validation/test contexts stay identical to direct inference"
+}

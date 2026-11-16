@@ -1,0 +1,14 @@
+[
+  {
+    "name": "train_peaks.pkl",
+    "source": "mark4h public Kaggle kernel version 3 output",
+    "bytes": 109813072,
+    "sha256": "352a470df35d78cbd03b9c7f072b583ce0c3e1cec92ead3eab2370a1e0ba5100"
+  },
+  {
+    "name": "metadata_train.csv",
+    "source": "https://raw.githubusercontent.com/RoyMachineLearning/VSB-Power-Line-Fault-Detection/master/metadata_train.csv",
+    "bytes": 117566,
+    "sha256": "c7f4b00e867259870c5381b5da9ba23b878ae9b907e75140e70f953c611b053a"
+  }
+]

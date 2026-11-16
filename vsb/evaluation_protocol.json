@@ -1,0 +1,9 @@
+{
+  "primary_validation_metric": "MCC",
+  "direction": "maximize",
+  "selection_unit": "configuration_or_checkpoint",
+  "threshold_selection": "maximize validation MCC",
+  "evaluation_unit": "three-phase measurement",
+  "feature_version": "author nine-feature version",
+  "split_selection": "fixed stratified measurement split, seed 42; never selected by metric"
+}
